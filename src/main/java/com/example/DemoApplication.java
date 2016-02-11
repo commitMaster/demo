@@ -20,8 +20,6 @@ public class DemoApplication {
 	CommandLineRunner runner (ProductRepository productRepository) {
 		return args -> {
 			Arrays.asList("TV, Phone, PC, Tablet, Clock".split(",")).forEach(n -> productRepository.save(new Product(n)));
-
-			productRepository.findAll().forEach(System.out::println);
 		};
 	}
 }

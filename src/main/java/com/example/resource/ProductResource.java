@@ -3,57 +3,49 @@ package com.example.resource;
 import com.example.entity.Product;
 import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
-@Component
-@Path("/")
+@RestController
 public class ProductResource {
 
     @Autowired
     private ProductRepository productRepository;
 
-    @Path("products")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProducts() {
-        return Response.ok().entity(productRepository.findAll()).build();
+    @RequestMapping(value = "/products", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
 
-
-    @Path("product/{id}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProduct(@PathParam("id") Long id) {
-        return Response.ok().entity(productRepository. findAll(Arrays.asList(id))).build();
+    @RequestMapping(value = "/product/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
+    public Product getProduct(@PathVariable("id") Long id)
+    {
+        return productRepository.findAll(Arrays.asList(id)).stream().findFirst().orElse(new Product());
     }
 
-    @Path("product")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response saveProduct(Product product) {
-        return Response.ok().entity(productRepository.save(product)).build();
+    @RequestMapping(value = "/product", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
     }
 
-    @Path("product")
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response updateProduct(Product product) {
-        return Response.ok().entity(productRepository.save(product)).build();
+    @RequestMapping(value = "/product", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+    public Product updateProduct(Product product) {
+        return productRepository.save(product);
     }
 
-    @Path("product/{id}")
-    @DELETE
-    public Response deleteProduct(@PathParam("id") Long id) {
+    @RequestMapping(value = "/product/{id}",    method = RequestMethod.DELETE)
+    public ResponseEntity deleteProduct(@PathVariable("id") Long id) {
         productRepository.delete(id);
-        return Response.ok().build();
+        return new ResponseEntity(HttpStatus.OK);
     }
-
 
 }
