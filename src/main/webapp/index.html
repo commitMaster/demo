@@ -11,30 +11,19 @@
     <script src="js/backbone.js"></script>
     <script src="js/bootstrap.js"></script>
 
-    <script type="text/template" id="models">
+    <script type="text/template" id="products">
         <p><strong>Models</strong> are the heart of any JavaScript application, containing the interactive data as well as a large part of the logic surrounding it: conversions, validations, computed properties, and access control. You extend Backbone.Model with your domain-specific methods, and Model provides a basic set of functionality for managing changes.</p>
-        <p style="font-style: italic; font-weight: bold">
-            <% if(params) { %>Passed parameter(s) from router: <%= params %>
-            <% } else { %>You didn't pass any parameter(s) in url.<% } %></p>
     </script>
 
-    <script type="text/template" id="views">
+    <script type="text/template" id="addProduct">
         <p><strong>Backbone views</strong> are almost more convention than they are code - they don't determine anything about your HTML or CSS for you, and can be used with any JavaScript templating library. The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page. Instead of digging into a JSON object, looking up an element in the DOM, and updating the HTML by hand, you can bind your view's render function to the model's "change" event - and now everywhere that model data is displayed in the UI, it is always immediately up to date.</p>
-        <p style="font-style: italic; font-weight: bold">
-            <% if(param) { %>Passed parameter from router: <%= param %>
-            <% } else { %>You didn't pass any parameter in url.<% } %></p>
     </script>
 
-    <script type="text/template" id="collections">
+    <script type="text/template" id="editProduct">
         <strong>Collections</strong> are ordered sets of models. You can bind "change" events to be notified when any model in the collection has been modified, listen for "add" and "remove" events, fetch the collection from the server, and use a full suite of Underscore.js methods.
     </script>
 
-    <script type="text/template" id="routes">
-        Web applications often provide linkable, bookmarkable, shareable URLs for important locations in the app. Until recently, hash fragments (#page) were used to provide these permalinks, but with the arrival of the History API, it's now possible to use standard URLs (/page). <strong>Backbone.Router</strong> provides methods for routing client-side pages, and connecting them to actions and events. For browsers which don't yet support the History API, the Router handles graceful fallback and transparent translation to the fragment version of the URL.
-    </script>
-
     <script src="js/history.js"></script>
-
 </head>
 <body>
 
@@ -47,10 +36,8 @@
     <div class="row">
         <div class="span2">
             <ul class="nav nav-pills nav-stacked">
-                <li class="models"><a href="#models">Models</a></li>
-                <li class="views"><a href="#views">Views</a></li>
-                <li class="collections"><a href="#collections">Collections</a></li>
-                <li class="routes"><a href="#routes">Routes</a></li>
+                <li class="products"><a href="#products">Products</a></li>
+                <li class="addProduct"><a href="#addProduct">Add product</a></li>
             </ul>
         </div>
         <div class="span8">

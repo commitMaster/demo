@@ -27,8 +27,7 @@ public class ProductResource {
     }
 
     @RequestMapping(value = "/product/{id}", produces = MediaType.APPLICATION_JSON, method = RequestMethod.GET)
-    public Product getProduct(@PathVariable("id") Long id)
-    {
+    public Product getProduct(@PathVariable("id") Long id) {
         return productRepository.findAll(Arrays.asList(id)).stream().findFirst().orElse(new Product());
     }
 
