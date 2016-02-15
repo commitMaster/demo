@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,12 +33,12 @@ public class ProductResource {
     }
 
     @RequestMapping(value = "/product", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON, method = RequestMethod.POST)
-    public Product saveProduct(Product product) {
+    public Product saveProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
-    @RequestMapping(value = "/product", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
-    public Product updateProduct(Product product) {
+    @RequestMapping(value = "/product/{id}", consumes = MediaType.APPLICATION_JSON, produces = MediaType.APPLICATION_JSON, method = RequestMethod.PUT)
+    public Product updateProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 

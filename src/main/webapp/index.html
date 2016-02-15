@@ -17,17 +17,17 @@
                 <caption>Products</caption>
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>Product name</th>
                     <th>Product description</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <% _.each(products, function(product) { %>
                     <tr>
-                        <th scope="row">1</th>
                         <td><%= product.name %></td>
                         <td><%= product.description %></td>
+                        <td><a href="#editProduct/<%= product.id %>">Edit</a> / <a href="#deleteProduct/<%= product.id %>">Delete</a></td>
                     </tr>
                 <% }); %>
                 </tbody>
@@ -35,53 +35,51 @@
     </script>
 
     <script type="text/template" id="addProduct">
-        <div class="span2">aaa
-            </div>
-
          <div class="" data-example-id="basic-forms">
             <form>
                 <div class="form-group">
-                    <label for="exampleInputName">Product name</label> <textarea class="form-control" rows="1" id="exampleInputName"></textarea>
+                    <label for="name">Product name</label> <textarea class="form-control" rows="1" id="name"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputDescription">Product description</label> <textarea class="form-control" rows="5" id="exampleInputDescription"></textarea>
+                    <label for="description">Product description</label> <textarea class="form-control" rows="5" id="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" id="addSbmt" class="btn btn-success">Add</button>
             </form>
         </div>
     </script>
 
     <script type="text/template" id="editProduct">
-        <strong>Collections</strong> are ordered sets of models. You can bind "change" events to be notified when any model in the collection has been modified, listen for "add" and "remove" events, fetch the collection from the server, and use a full suite of Underscore.js methods.
+        <div class="" data-example-id="basic-forms">
+            <form>
+                <input type="hidden" id="id" value="<%= product.id %>">
+                <div class="form-group">
+                    <label for="name">Product name</label> <textarea class="form-control" rows="1" id="name"><%= product.name %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">Product description</label> <textarea class="form-control" rows="5" id="description"><%= product.description %></textarea>
+                </div>
+                <button type="submit" id="updateSbmt" class="btn btn-success">Update</button>
+            </form>
+        </div>
     </script>
 
     <script src="js/history.js"></script>
 </head>
 <body>
-
-
-<h1>Backbone</h1>
-<br>
-
-
-<div class="container">
-    <div class="row">
-        <div class="span2">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="products"><a href="#products">Products</a></li>
-                <li class="addProduct"><a href="#addProduct">Add product</a></li>
-            </ul>
-        </div>
-        <div class="span8">
-            <div class="content"></div>
+    <h1>Backbone</h1>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="span2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="products"><a href="#products">Products</a></li>
+                    <li class="addProduct"><a href="#addProduct">Add product</a></li>
+                </ul>
+            </div>
+            <div class="span8">
+                <div class="content"></div>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-
-
-
 </body>
 <html>
